@@ -32,8 +32,8 @@ install:
 script:
   # XXX: For now we're only performing minimal CI checks as most tests are
   # broken. Tests will be individually added here as they're fixed.
-- pip install rlp==1.0.1
-- pip freeze
+  - pip install rlp==1.0.1
+  - pip freeze
   - python -c "from rlp.utils import ALL_BYTES"
   - make lint-minimal
   - make test-passing
