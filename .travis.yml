@@ -32,6 +32,8 @@ install:
 script:
   # XXX: For now we're only performing minimal CI checks as most tests are
   # broken. Tests will be individually added here as they're fixed.
+  - pip freeze
+  - python -c "from rlp.utils import ALL_BYTES"
   - make lint-minimal
   - make test-passing
   #- if [ -d .tox/$TOX_ENV/ ]; then cd .tox/$TOX_ENV && coverage erase; fi;
