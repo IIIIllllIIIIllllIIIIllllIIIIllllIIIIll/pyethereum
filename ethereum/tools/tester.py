@@ -100,11 +100,15 @@ class ABIContract(object):  # pylint: disable=too-few-public-methods
         def kall(self, *args, **kwargs):
             key = kwargs.get('sender', k0)
 
+            data = kwargs.get('data', None)
+            if data is None:
+                data = self.translator.encode_function_call(function_name, args)
+
             result = tx_or_call(  # pylint: disable=protected-access
                 sender=key,
                 to=self.address,
                 value=kwargs.get('value', 0),
-                data=self.translator.encode(function_name, args),
+                data=data,
                 startgas=kwargs.get('startgas', STARTGAS),
                 gasprice=kwargs.get('gasprice', GASPRICE)
             )
